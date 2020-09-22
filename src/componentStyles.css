@@ -1,0 +1,44 @@
+.circle {
+  border-radius: 50%;
+}
+
+.center {
+  text-align: center;
+}
+
+.full_width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.color {
+  background-color: #154854;
+}
+
+.side_bar {
+  color: white;
+  background-color: black;
+  z-index: 0;
+  right: 0;
+  top: 0;
+  position: fixed;
+  width: 25%;
+  height: 100%;
+  align-content: center;
+}
+
+.bar_icon {
+  width: 3vw;
+  height: 6vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.medium_pic {
+  margin-top: 10vh;
+  height: 30vh;
+}
