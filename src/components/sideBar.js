@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProfileIcon from './ProfileIcon';
 import UserName from './UserName';
 import blackBar from './icons/blackBar.png';
@@ -18,7 +18,15 @@ const Icon = (props) => {
 };
 
 const SideBar = (props) => {
-  const { profileImage, userID, fullName } = props;
+  const [loggedUser, setLoggedUser] = useState({});
+
+  const getUser = () => {
+    props.fetchAPI.getLoggedUser().then((user) => {
+      setLoggedUser(user);
+    });
+  };
+  useEffect(getUser, []);
+  const { profileURL, userID, fullName, src } = loggedUser;
   const [active, toggleActive] = useState(false);
 
   if (!active) {
@@ -27,8 +35,8 @@ const SideBar = (props) => {
   return (
     <div className='side_bar center'>
       <Icon icon={whiteBar} toggleActive={toggleActive} />
-      <ProfileIcon src={profileImage} className={'medium_pic'} />
-      <UserName profileURL='#' userID={userID} fullName={fullName} />
+      <ProfileIcon src={src} className={'medium_pic'} />
+      <UserName profileURL={profileURL} userID={userID} fullName={fullName} />
     </div>
   );
 };

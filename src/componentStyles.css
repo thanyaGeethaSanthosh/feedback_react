@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.inline {
+  display: flex;
+}
+
 .full_width {
   width: 100%;
 }

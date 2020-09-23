@@ -1,16 +1,5 @@
 import React, { useState } from 'react';
-
-const InputText = (props) => {
-  return (
-    <input type='text' value={props.value} onChange={props.handleChange} />
-  );
-};
-
-const Submit = (props) => {
-  return (
-    <button onClick={props.active ? props.onClick : () => {}}>send</button>
-  );
-};
+import { InputText, Submit } from './Form';
 
 const FeedBackForm = (props) => {
   const [name, setName] = useState('');
@@ -19,6 +8,9 @@ const FeedBackForm = (props) => {
 
   const onSubmit = () => {
     const formData = { name: name || 'Anonymous', suggestion, relatedTo };
+    setName('');
+    setSuggestion('');
+    setRelatedTo('');
     props.onSubmit(formData);
   };
 
