@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import SideBar from './sideBar';
 // import { isLogin } from '../utils';
 
 const PublicRoute = ({
@@ -23,7 +24,12 @@ const PublicRoute = ({
     // />
     <Route
       {...rest}
-      render={(props) => <Component {...{ fetchAPI, ...props }} />}
+      render={(props) => (
+        <div>
+          <Component {...{ fetchAPI, ...props }} />
+          <SideBar fetchAPI={fetchAPI} />
+        </div>
+      )}
     />
   );
 };
