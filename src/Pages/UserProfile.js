@@ -15,7 +15,7 @@ const UserProfile = (props) => {
   useEffect(getUser, []);
   const { profileURL, userID, fullName, src } = user;
   return (
-    <div>
+    <div className='user_page'>
       <div>
         <Profile
           profileURL={profileURL}

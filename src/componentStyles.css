@@ -22,6 +22,20 @@
   background-color: #154854;
 }
 
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  padding-top: 1.5vh;
+  padding-bottom: 2vh;
+  margin-top: 2vh;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
 .side_bar {
   color: white;
   background-color: black;
@@ -43,6 +57,54 @@
 }
 
 .medium_pic {
-  margin-top: 10vh;
   height: 30vh;
+}
+
+.top_space {
+  margin-top: 10vh;
+}
+
+.user_name {
+  margin: auto;
+  margin-left: 6vh;
+}
+
+.active {
+  border-bottom: 2px solid #42b3f4;
+  color: black;
+  cursor: default;
+}
+
+.in_active {
+  color: rgb(168, 166, 166);
+  cursor: pointer;
+}
+
+.tab {
+  padding: 1vh;
+  font-weight: 800;
+}
+
+.tabs {
+  margin: auto;
+  width: 70%;
+  text-align: center;
+  margin-top: 5vh;
+}
+
+.user_page {
+  width: 65%;
+  padding: 4vw;
+  margin: auto;
+  box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white,
+    12px 0 15px -4px rgba(31, 73, 125, 0.8),
+    -12px 0 15px -4px rgba(31, 73, 125, 0.8);
+  min-height: 84vh;
+}
+
+.profile {
+  border-bottom: 1px solid black;
+  width: 80%;
+  margin: auto;
+  padding: 2vh;
 }

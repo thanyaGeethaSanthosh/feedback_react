@@ -4,7 +4,7 @@ import UserName from './UserName';
 
 const Profile = (props) => {
   return (
-    <div className='inline'>
+    <div className='inline profile'>
       <ProfileIcon className='medium_pic' src={props.src} />
       <UserName
         profileURL={props.profileURL}

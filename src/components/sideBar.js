@@ -35,7 +35,7 @@ const SideBar = (props) => {
   return (
     <div className='side_bar center'>
       <Icon icon={whiteBar} toggleActive={toggleActive} />
-      <ProfileIcon src={src} className={'medium_pic'} />
+      <ProfileIcon src={src} className={'medium_pic top_space'} />
       <UserName profileURL={profileURL} userID={userID} fullName={fullName} />
     </div>
   );
