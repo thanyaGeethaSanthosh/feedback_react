@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { InputText, Submit } from './../components/Form';
 
 const SignUp = (props) => {
+  const history = useHistory();
   const [userName, setUserName] = useState('');
   const [fullName, setFullName] = useState('');
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const formData = { userName, fullName };
-    props.fetchAPI.Register(formData);
+    const registered = await props.fetchAPI.Register(formData);
+    console.log(registered);
+    history.push('/');
   };
 
   return (

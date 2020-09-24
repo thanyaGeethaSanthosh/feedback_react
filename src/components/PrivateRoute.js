@@ -7,7 +7,7 @@ const PrivateRoute = ({ component: Component, fetchAPI, ...rest }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const getUser = () => {
-    fetchAPI.getLoggedUser().then(({ user, loggedIn }) => {
+    fetchAPI.getUserData().then(({ user, loggedIn }) => {
       setUser(user);
       setLoggedIn(loggedIn);
       setLoaded(true);

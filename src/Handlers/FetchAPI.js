@@ -10,31 +10,15 @@ const loginTo = () => {
 };
 
 const Register = (data) => {
-  return postReq('/api/signUp', data).then((res) => console.log(res));
+  return postReq('api/signUp', data);
 };
 
-// const getLoggedUser = () => {
-//   return new Promise((resolve) => {
-//     resolve({
-//       user: {
-//         src:
-//           'https://res.cloudinary.com/dzkeqw3qc/image/upload/v1600891888/myAvatar_t0rjgd.png',
-//         userID: 'thani',
-//         fullName: 'Thanya Geetha Santhosh',
-//         profileURL: '/',
-//       },
-//       loggedIn: true,
-//     });
-//   });
-// };
+const getOtherUserData = (userName) => {
+  return fetch(`api/user/${userName}`).then((res) => res.json());
+};
 
-const getLoggedUser = () => {
-  return new Promise((resolve) => {
-    resolve({
-      user: null,
-      loggedIn: false,
-    });
-  });
+const getUserData = () => {
+  return fetch('api/getUserData').then((res) => res.json());
 };
 
 const users = [
@@ -93,7 +77,7 @@ const getUser = (userName) => {
 };
 
 const addFeedBack = (data) => {
-  getLoggedUser()
+  getUserData()
     .then(({ user }) => user)
     .then(({ userID }) => {
       FeedBacks.push({
@@ -109,7 +93,7 @@ const addFeedBack = (data) => {
 
 const getSentFeedBacks = () => {
   return new Promise((resolve) => {
-    getLoggedUser()
+    getUserData()
       .then(({ user }) => user)
       .then(({ userID }) => {
         const sent = FeedBacks.filter((feedBack) => feedBack.sender === userID);
@@ -120,7 +104,7 @@ const getSentFeedBacks = () => {
 
 const getReceivedFeedBacks = () => {
   return new Promise((resolve) => {
-    getLoggedUser()
+    getUserData()
       .then(({ user }) => user)
       .then(({ userID }) => {
         const sent = FeedBacks.filter(
@@ -134,9 +118,10 @@ const getReceivedFeedBacks = () => {
 export default {
   loginTo,
   Register,
-  getLoggedUser,
+  getUserData,
   getUser,
   addFeedBack,
   getSentFeedBacks,
   getReceivedFeedBacks,
+  getOtherUserData,
 };

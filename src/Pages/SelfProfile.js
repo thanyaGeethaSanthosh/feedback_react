@@ -6,7 +6,7 @@ const SelfProfile = (props) => {
   const [loggedUser, setLoggedUser] = useState({});
 
   const getUser = () => {
-    props.fetchAPI.getLoggedUser().then(({ user }) => {
+    props.fetchAPI.getUserData().then(({ user }) => {
       setLoggedUser(user);
     });
   };

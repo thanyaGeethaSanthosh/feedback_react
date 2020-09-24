@@ -5,7 +5,7 @@ const PublicRoute = ({ component: Component, fetchAPI, ...rest }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const isLogged = () => {
-    fetchAPI.getLoggedUser().then(({ loggedIn }) => {
+    fetchAPI.getUserData().then(({ loggedIn }) => {
       setLoggedIn(loggedIn);
       setLoaded(true);
     });
