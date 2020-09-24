@@ -1,11 +1,17 @@
 import React from 'react';
+import backgroundImage from '../icons/backGroundLogoWhite.png';
 
 const Login = (props) => {
   return (
-    <div className='vertical-center full-height'>
-      <a href='http://localhost:3030/api/authenticate'>
-        <button>Login with Github</button>
-      </a>
+    <div>
+      <div className='middle inline'>
+        <img className='large_logo' src={backgroundImage} alt='' />
+      </div>
+      <div className='middle'>
+        <a href='http://localhost:3030/api/authenticate'>
+          <button className='button loginBtn'>Login with Github</button>
+        </a>
+      </div>
     </div>
   );
 };

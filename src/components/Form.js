@@ -31,7 +31,7 @@ const Submit = (props) => {
       className='button side_Button'
       onClick={props.active ? props.onClick : () => {}}
     >
-      send
+      {props.value ? props.value : 'send'}
     </button>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { InputText, Submit } from './../components/Form';
+import backgroundImage from '../icons/backGroundLogoWhite.png';
 
 const SignUp = (props) => {
   const history = useHistory();
@@ -16,19 +17,35 @@ const SignUp = (props) => {
 
   return (
     <div>
-      <InputText
-        value={userName}
-        handleChange={(event) => {
-          setUserName(event.target.value);
-        }}
-      />
-      <InputText
-        value={fullName}
-        handleChange={(event) => {
-          setFullName(event.target.value);
-        }}
-      />
-      <Submit active={fullName.length > 0} onClick={onSubmit} />
+      <div className='middle inline'>
+        <img className='large_logo' src={backgroundImage} alt='' />
+      </div>
+      <div className='middle login_box'>
+        <InputText
+          className='login_text'
+          value={userName}
+          placeholder='Type your new userName...'
+          handleChange={(event) => {
+            setUserName(event.target.value);
+          }}
+        />
+        <InputText
+          className='login_text'
+          value={fullName}
+          placeholder='Type your full name...'
+          handleChange={(event) => {
+            setFullName(event.target.value);
+          }}
+        />
+        {/* <div className='inline'> */}
+        <Submit
+          className='button loginBtn'
+          active={fullName.length > 0}
+          onClick={onSubmit}
+          value='Signup with Github'
+        />
+        {/* </div> */}
+      </div>
     </div>
   );
 };

@@ -170,3 +170,23 @@
   border-bottom: 1px solid black;
   margin: auto;
 }
+
+.large_logo {
+  width: 70vw;
+  margin: auto;
+}
+
+.loginBtn {
+  width: 20vw;
+  margin-left: 40vw;
+  height: 7vh;
+  font-size: 2vw;
+}
+
+.login_box {
+  margin-left: 5vw;
+}
+
+.login_text {
+  width: 30vw;
+}
