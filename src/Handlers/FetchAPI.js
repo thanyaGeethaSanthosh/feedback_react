@@ -82,7 +82,12 @@ const getUser = (userName) => {
 
 const addFeedBack = (data) => {
   getLoggedUser().then(({ userID }) => {
-    FeedBacks.push({ ...data, sender: userID, time: new Date() });
+    FeedBacks.push({
+      ...data,
+      sender: userID,
+      time: new Date(),
+      id: FeedBacks.length,
+    });
   });
   console.log(FeedBacks);
   return new Promise((resolve) => resolve('ok'));
