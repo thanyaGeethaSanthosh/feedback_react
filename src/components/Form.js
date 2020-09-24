@@ -2,14 +2,38 @@ import React from 'react';
 
 const InputText = (props) => {
   return (
-    <input type='text' value={props.value} onChange={props.handleChange} />
+    <input
+      className={`input_text avg_width  ${props.className || ''}`}
+      type='text'
+      value={props.value}
+      onChange={props.handleChange}
+      placeholder={props.placeholder}
+    />
+  );
+};
+
+const TextArea = (props) => {
+  return (
+    <textarea
+      className={`input_text avg_width large_input_text ${
+        props.className || ''
+      }`}
+      value={props.value}
+      onChange={props.handleChange}
+      placeholder={props.placeholder}
+    />
   );
 };
 
 const Submit = (props) => {
   return (
-    <button onClick={props.active ? props.onClick : () => {}}>send</button>
+    <button
+      className='button side_Button'
+      onClick={props.active ? props.onClick : () => {}}
+    >
+      send
+    </button>
   );
 };
 
-export { InputText, Submit };
+export { InputText, Submit, TextArea };
