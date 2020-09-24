@@ -1,37 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import SideBar from './sideBar';
-// import { isLogin } from '../utils';
 
-const PublicRoute = ({
-  component: Component,
-  restricted,
-  fetchAPI,
-  ...rest
-}) => {
-  return (
-    // restricted = false meaning public route
-    // restricted = true meaning restricted route
-    // <Route
-    //   {...rest}
-    //   render={(props) =>
-    //     isLogin() && restricted ? (
-    //       <Redirect to='/dashboard' />
-    //     ) : (
-    //       <Component {...props} />
-    //     )
-    //   }
-    // />
-    <Route
-      {...rest}
-      render={(props) => (
-        <div>
-          <Component {...{ fetchAPI, ...props }} />
-          <SideBar fetchAPI={fetchAPI} />
-        </div>
-      )}
-    />
-  );
+const PublicRoute = ({ component: Component, fetchAPI, ...rest }) => {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const isLogged = () => {
+    fetchAPI.getLoggedUser().then(({ loggedIn }) => {
+      setLoggedIn(loggedIn);
+      setLoaded(true);
+    });
+  };
+
+  useEffect(isLogged, []);
+
+  if (loaded) {
+    return (
+      <Route
+        {...rest}
+        render={(props) =>
+          loggedIn ? (
+            <Redirect to='/' />
+          ) : (
+            <div>
+              <Component {...{ fetchAPI, ...props }} />
+            </div>
+          )
+        }
+      />
+    );
+  }
+  return <div>Loading</div>;
 };
 
 export default PublicRoute;

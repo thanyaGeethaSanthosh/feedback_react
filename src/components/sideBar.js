@@ -18,15 +18,7 @@ const Icon = (props) => {
 };
 
 const SideBar = (props) => {
-  const [loggedUser, setLoggedUser] = useState({});
-
-  const getUser = () => {
-    props.fetchAPI.getLoggedUser().then((user) => {
-      setLoggedUser(user);
-    });
-  };
-  useEffect(getUser, []);
-  const { profileURL, userID, fullName, src } = loggedUser;
+  const { profileURL, userID, fullName, src } = props.user;
   const [active, toggleActive] = useState(false);
 
   if (!active) {

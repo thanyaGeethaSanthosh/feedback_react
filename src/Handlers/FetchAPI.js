@@ -13,14 +13,26 @@ const Register = (data) => {
   return postReq('/api/signUp', data).then((res) => console.log(res));
 };
 
+// const getLoggedUser = () => {
+//   return new Promise((resolve) => {
+//     resolve({
+//       user: {
+//         src:
+//           'https://res.cloudinary.com/dzkeqw3qc/image/upload/v1600891888/myAvatar_t0rjgd.png',
+//         userID: 'thani',
+//         fullName: 'Thanya Geetha Santhosh',
+//         profileURL: '/',
+//       },
+//       loggedIn: true,
+//     });
+//   });
+// };
+
 const getLoggedUser = () => {
   return new Promise((resolve) => {
     resolve({
-      src:
-        'https://res.cloudinary.com/dzkeqw3qc/image/upload/v1600891888/myAvatar_t0rjgd.png',
-      userID: 'thani',
-      fullName: 'Thanya Geetha Santhosh',
-      profileURL: '/',
+      user: null,
+      loggedIn: false,
     });
   });
 };
@@ -81,35 +93,41 @@ const getUser = (userName) => {
 };
 
 const addFeedBack = (data) => {
-  getLoggedUser().then(({ userID }) => {
-    FeedBacks.push({
-      ...data,
-      sender: userID,
-      time: new Date(),
-      id: FeedBacks.length,
+  getLoggedUser()
+    .then(({ user }) => user)
+    .then(({ userID }) => {
+      FeedBacks.push({
+        ...data,
+        sender: userID,
+        time: new Date(),
+        id: FeedBacks.length,
+      });
     });
-  });
   console.log(FeedBacks);
   return new Promise((resolve) => resolve('ok'));
 };
 
 const getSentFeedBacks = () => {
   return new Promise((resolve) => {
-    getLoggedUser().then(({ userID }) => {
-      const sent = FeedBacks.filter((feedBack) => feedBack.sender === userID);
-      resolve(sent);
-    });
+    getLoggedUser()
+      .then(({ user }) => user)
+      .then(({ userID }) => {
+        const sent = FeedBacks.filter((feedBack) => feedBack.sender === userID);
+        resolve(sent);
+      });
   });
 };
 
 const getReceivedFeedBacks = () => {
   return new Promise((resolve) => {
-    getLoggedUser().then(({ userID }) => {
-      const sent = FeedBacks.filter(
-        (feedBack) => feedBack.recipient === userID
-      );
-      resolve(sent);
-    });
+    getLoggedUser()
+      .then(({ user }) => user)
+      .then(({ userID }) => {
+        const sent = FeedBacks.filter(
+          (feedBack) => feedBack.recipient === userID
+        );
+        resolve(sent);
+      });
   });
 };
 

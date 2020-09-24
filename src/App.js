@@ -12,8 +12,7 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        <PublicRoute
-          restricted={false}
+        <PrivateRoute
           component={SelfProfile}
           path='/'
           fetchAPI={FetchAPI}

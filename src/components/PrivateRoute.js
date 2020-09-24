@@ -1,28 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import SideBar from './sideBar';
-// import { isLogin } from '../utils';
 
 const PrivateRoute = ({ component: Component, fetchAPI, ...rest }) => {
-  return (
-    // Show the component only when the user is logged in
-    // Otherwise, redirect the user to /signin page
-    //   <Route
-    //     {...rest}
-    //     render={(props) =>
-    //       isLogin() ? <Component {...props} /> : <Redirect to='/signin' />
-    //     }
-    //   />
-    <Route
-      {...rest}
-      render={(props) => (
-        <div>
-          <Component {...{ fetchAPI, ...props }} />
-          <SideBar fetchAPI={fetchAPI} />
-        </div>
-      )}
-    />
-  );
+  const [user, setUser] = useState({});
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const getUser = () => {
+    fetchAPI.getLoggedUser().then(({ user, loggedIn }) => {
+      setUser(user);
+      setLoggedIn(loggedIn);
+      setLoaded(true);
+    });
+  };
+
+  useEffect(getUser, []);
+
+  if (loaded) {
+    return (
+      <Route
+        {...rest}
+        render={(props) =>
+          loggedIn ? (
+            <div>
+              <Component {...{ fetchAPI, ...props }} />
+              <SideBar user={user} />
+            </div>
+          ) : (
+            <Redirect to='/login' />
+          )
+        }
+      />
+    );
+  }
+  return <div>Loading</div>;
 };
 
 export default PrivateRoute;
