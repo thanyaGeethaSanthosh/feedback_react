@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Profile from './../Profile';
+import Profile from './../components/Profile';
 
 const SelfProfile = (props) => {
   const [loggedUser, setLoggedUser] = useState({});

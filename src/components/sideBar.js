@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ProfileIcon from './ProfileIcon';
 import UserName from './UserName';
-import blackBar from './icons/blackBar.png';
-import whiteBar from './icons/whiteBar.png';
+import blackBar from './../icons/blackBar.png';
+import whiteBar from './../icons/whiteBar.png';
 
 const Icon = (props) => {
   return (

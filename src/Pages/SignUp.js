@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InputText, Submit } from '../Form';
+import { InputText, Submit } from './../components/Form';
 
 const SignUp = (props) => {
   const [userName, setUserName] = useState('');

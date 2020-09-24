@@ -47,9 +47,33 @@ const users = [
     fullName: 'Micheal Dsouza',
     profileURL: '/micheal',
   },
+  {
+    src:
+      'https://res.cloudinary.com/dzkeqw3qc/image/upload/v1600925421/myAvatar_3_urvkvu.png',
+    userID: 'asna',
+    fullName: 'Fathimathul Asna',
+    profileURL: '/asna',
+  },
 ];
 
-const FeedBacks = [];
+const FeedBacks = [
+  {
+    nameToShow: 'Shashi kumar',
+    recipient: 'ram',
+    relatedTo: 'Teachers day presentation',
+    sender: 'thani',
+    suggestion: 'your presentation was awsome',
+    time: '2020-09-24T06:20:46.266Z',
+  },
+  {
+    nameToShow: 'Anonymous',
+    recipient: 'thani',
+    relatedTo: 'new year Party',
+    sender: 'micheal',
+    suggestion: 'next time give invitation little earlier',
+    time: '2020-01-2T06:20:46.266Z',
+  },
+];
 
 const getUser = (userName) => {
   const user = users.find((user) => userName === user.userID);
@@ -57,8 +81,31 @@ const getUser = (userName) => {
 };
 
 const addFeedBack = (data) => {
-  FeedBacks.push(data);
+  getLoggedUser().then(({ userID }) => {
+    FeedBacks.push({ ...data, sender: userID, time: new Date() });
+  });
+  console.log(FeedBacks);
   return new Promise((resolve) => resolve('ok'));
+};
+
+const getSentFeedBacks = () => {
+  return new Promise((resolve) => {
+    getLoggedUser().then(({ userID }) => {
+      const sent = FeedBacks.filter((feedBack) => feedBack.sender === userID);
+      resolve(sent);
+    });
+  });
+};
+
+const getReceivedFeedBacks = () => {
+  return new Promise((resolve) => {
+    getLoggedUser().then(({ userID }) => {
+      const sent = FeedBacks.filter(
+        (feedBack) => feedBack.recipient === userID
+      );
+      resolve(sent);
+    });
+  });
 };
 
 export default {
@@ -67,4 +114,6 @@ export default {
   getLoggedUser,
   getUser,
   addFeedBack,
+  getSentFeedBacks,
+  getReceivedFeedBacks,
 };

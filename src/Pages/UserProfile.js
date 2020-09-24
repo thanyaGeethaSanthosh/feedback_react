@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Profile from './../Profile';
-import FeedBackForm from './../FeedBackForm';
+import Profile from './../components/Profile';
+import FeedBackForm from './../components/FeedBackForm';
 
 const UserProfile = (props) => {
   const { userName } = useParams();
@@ -24,7 +24,11 @@ const UserProfile = (props) => {
           src={src}
         />
         <div>
-          <FeedBackForm onSubmit={(data) => props.fetchAPI.addFeedBack(data)} />
+          <FeedBackForm
+            onSubmit={(data) =>
+              props.fetchAPI.addFeedBack({ ...data, recipient: userID })
+            }
+          />
         </div>
       </div>
     </div>

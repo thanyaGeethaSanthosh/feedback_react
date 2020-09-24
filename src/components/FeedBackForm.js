@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import { InputText, Submit } from './Form';
 
 const FeedBackForm = (props) => {
-  const [name, setName] = useState('');
+  const [nameToShow, setNameToShow] = useState('');
   const [suggestion, setSuggestion] = useState('');
   const [relatedTo, setRelatedTo] = useState('');
 
   const onSubmit = () => {
-    const formData = { name: name || 'Anonymous', suggestion, relatedTo };
-    setName('');
+    const formData = {
+      nameToShow: nameToShow || 'Anonymous',
+      suggestion,
+      relatedTo,
+    };
+    setNameToShow('');
     setSuggestion('');
     setRelatedTo('');
     props.onSubmit(formData);
@@ -17,9 +21,9 @@ const FeedBackForm = (props) => {
   return (
     <div>
       <InputText
-        value={name}
+        value={nameToShow}
         handleChange={(event) => {
-          setName(event.target.value);
+          setNameToShow(event.target.value);
         }}
       />
       <InputText
