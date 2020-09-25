@@ -37,14 +37,12 @@ const SignUp = (props) => {
             setFullName(event.target.value);
           }}
         />
-        {/* <div className='inline'> */}
         <Submit
           className='button loginBtn'
           active={fullName.length > 0}
           onClick={onSubmit}
           value='Signup with Github'
         />
-        {/* </div> */}
       </div>
     </div>
   );

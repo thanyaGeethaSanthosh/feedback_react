@@ -24,7 +24,7 @@ const PrivateRoute = ({ component: Component, fetchAPI, ...rest }) => {
           loggedIn ? (
             <div>
               <Component {...{ fetchAPI, ...props }} />
-              <SideBar user={user} />
+              <SideBar user={user} fetchAPI={fetchAPI} />
             </div>
           ) : (
             <Redirect to='/login' />

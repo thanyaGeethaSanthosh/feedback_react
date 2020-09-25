@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import ProfileIcon from './ProfileIcon';
 import UserName from './UserName';
 import blackBar from './../icons/blackBar.png';
@@ -17,9 +18,20 @@ const Icon = (props) => {
   );
 };
 
+const SideLink = (props) => {
+  return <h1 onClick={props.onClick}>{props.value}</h1>;
+};
+
 const SideBar = (props) => {
+  const history = useHistory();
   const { profileURL, userID, fullName, src } = props.user;
   const [active, toggleActive] = useState(false);
+
+  const logOut = () => {
+    props.fetchAPI.logout().then(() => {
+      history.push('/login');
+    });
+  };
 
   if (!active) {
     return <Icon icon={blackBar} toggleActive={toggleActive} />;
@@ -29,6 +41,7 @@ const SideBar = (props) => {
       <Icon icon={whiteBar} toggleActive={toggleActive} />
       <ProfileIcon src={src} className={'medium_pic top_space'} />
       <UserName profileURL={profileURL} userID={userID} fullName={fullName} />
+      <SideLink onClick={logOut} value='Log out' />
     </div>
   );
 };

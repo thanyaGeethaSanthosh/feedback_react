@@ -9,6 +9,10 @@ const loginTo = () => {
   return fetch(`api/authenticate`);
 };
 
+const logout = () => {
+  return fetch(`api/logout`);
+};
+
 const Register = (data) => {
   return postReq('api/signUp', data);
 };
@@ -124,4 +128,5 @@ export default {
   getSentFeedBacks,
   getReceivedFeedBacks,
   getOtherUserData,
+  logout,
 };
