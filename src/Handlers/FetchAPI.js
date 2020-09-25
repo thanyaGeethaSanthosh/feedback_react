@@ -18,67 +18,32 @@ const Register = (data) => {
 };
 
 const getOtherUserData = (userName) => {
-  return fetch(`api/user/${userName}`).then((res) => res.json());
+  return fetch(`/api/user/${userName}`).then((res) => res.json());
+  // .then(({ otherUser }) => otherUser);
 };
 
 const getUserData = () => {
-  return fetch('api/getUserData').then((res) => res.json());
+  return fetch('/api/getUserData').then((res) => res.json());
 };
-
-const users = [
-  {
-    src:
-      'https://res.cloudinary.com/dzkeqw3qc/image/upload/v1600891888/myAvatar_t0rjgd.png',
-    userID: 'thani',
-    fullName: 'Thanya Geetha Santhosh',
-    profileURL: '/thani',
-  },
-  {
-    src:
-      'https://res.cloudinary.com/dzkeqw3qc/image/upload/v1600893456/myAvatar_1_kputbe.png',
-    userID: 'ram',
-    fullName: 'Ram Jeevan',
-    profileURL: '/ram',
-  },
-  {
-    src:
-      'https://res.cloudinary.com/dzkeqw3qc/image/upload/v1600893457/myAvatar_2_h2oqj2.png',
-    userID: 'micheal',
-    fullName: 'Micheal Dsouza',
-    profileURL: '/micheal',
-  },
-  {
-    src:
-      'https://res.cloudinary.com/dzkeqw3qc/image/upload/v1600925421/myAvatar_3_urvkvu.png',
-    userID: 'asna',
-    fullName: 'Fathimathul Asna',
-    profileURL: '/asna',
-  },
-];
 
 const FeedBacks = [
   {
     nameToShow: 'Shashi kumar',
     recipient: 'ram',
     relatedTo: 'Teachers day presentation',
-    sender: 'thani',
+    sender: 'thanya',
     suggestion: 'your presentation was awsome',
     time: '2020-09-24T06:20:46.266Z',
   },
   {
     nameToShow: 'Anonymous',
-    recipient: 'thani',
+    recipient: 'thanya',
     relatedTo: 'new year Party',
     sender: 'micheal',
     suggestion: 'next time give invitation little earlier',
     time: '2020-01-2T06:20:46.266Z',
   },
 ];
-
-const getUser = (userName) => {
-  const user = users.find((user) => userName === user.userID);
-  return new Promise((resolve) => resolve(user));
-};
 
 const addFeedBack = (data) => {
   getUserData()
@@ -91,7 +56,6 @@ const addFeedBack = (data) => {
         id: FeedBacks.length,
       });
     });
-  console.log(FeedBacks);
   return new Promise((resolve) => resolve('ok'));
 };
 
@@ -123,7 +87,6 @@ export default {
   loginTo,
   Register,
   getUserData,
-  getUser,
   addFeedBack,
   getSentFeedBacks,
   getReceivedFeedBacks,

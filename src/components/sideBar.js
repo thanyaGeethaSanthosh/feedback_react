@@ -8,7 +8,7 @@ import whiteBar from './../icons/whiteBar.png';
 const Icon = (props) => {
   return (
     <img
-      className='bar_icon'
+      className='bar_icon pointer'
       src={props.icon}
       alt='bar'
       onClick={() => {
@@ -19,13 +19,21 @@ const Icon = (props) => {
 };
 
 const SideLink = (props) => {
-  return <h1 onClick={props.onClick}>{props.value}</h1>;
+  return (
+    <h1 className='pointer' onClick={props.onClick}>
+      {props.value}
+    </h1>
+  );
 };
 
 const SideBar = (props) => {
   const history = useHistory();
-  const { profileURL, userID, fullName, src } = props.user;
+  const { userID, fullName, src } = props.user;
   const [active, toggleActive] = useState(false);
+
+  const redirectTo = (path) => {
+    history.push(path);
+  };
 
   const logOut = () => {
     props.fetchAPI.logout().then(() => {
@@ -40,7 +48,11 @@ const SideBar = (props) => {
     <div className='side_bar center'>
       <Icon icon={whiteBar} toggleActive={toggleActive} />
       <ProfileIcon src={src} className={'medium_pic top_space'} />
-      <UserName profileURL={profileURL} userID={userID} fullName={fullName} />
+      <UserName
+        onClick={() => redirectTo('/')}
+        userID={userID}
+        fullName={fullName}
+      />
       <SideLink onClick={logOut} value='Log out' />
     </div>
   );

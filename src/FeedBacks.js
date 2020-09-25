@@ -22,7 +22,9 @@ const Tab = (props) => {
   const { activeTab, value, toggleActive } = props;
   return (
     <div
-      className={`${activeTab === value ? 'active' : 'in_active'} tab`}
+      className={`${
+        activeTab === value ? 'active def_pointer' : 'in_active pointer'
+      } tab`}
       onClick={() => toggleActive(value)}
     >
       {value}
