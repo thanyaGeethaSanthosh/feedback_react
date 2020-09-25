@@ -11,9 +11,7 @@ const Icon = (props) => {
       className='bar_icon pointer'
       src={props.icon}
       alt='bar'
-      onClick={() => {
-        props.toggleActive((active) => !active);
-      }}
+      onClick={props.toggleActive}
     />
   );
 };
@@ -29,10 +27,15 @@ const SideLink = (props) => {
 const SideBar = (props) => {
   const history = useHistory();
   const { userID, fullName, src } = props.user;
-  const [active, toggleActive] = useState(false);
+  const [active, setActive] = useState(false);
+
+  const toggleActive = () => {
+    setActive((active) => !active);
+  };
 
   const redirectTo = (path) => {
     history.push(path);
+    toggleActive();
   };
 
   const logOut = () => {
