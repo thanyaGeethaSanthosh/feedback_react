@@ -37,6 +37,14 @@ const getReceivedFeedBacks = (data) => {
   return fetch('/api/getReceivedFeedBacks').then((res) => res.json());
 };
 
+const getGroupMembers = (groupID) => {
+  return fetch(`/api/getGroupMembers/${groupID}`).then((res) => res.json());
+};
+
+const getGroupsOf = (groupID) => {
+  return fetch('/api/getGroupsOf').then((res) => res.json());
+};
+
 export default {
   loginTo,
   Register,
@@ -46,4 +54,6 @@ export default {
   getReceivedFeedBacks,
   getOtherUserData,
   logout,
+  getGroupMembers,
+  getGroupsOf,
 };

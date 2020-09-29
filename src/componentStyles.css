@@ -31,7 +31,7 @@
 }
 
 .color {
-  background-color: #154854;
+  color: #154854;
 }
 
 .pointer {
@@ -70,6 +70,15 @@
   align-content: center;
 }
 
+.group_name {
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 5vh;
+  border-bottom: 2px solid rgb(104, 102, 102);
+  height: 8vh;
+  width: 100%;
+}
+
 .bar_icon {
   width: 3vw;
   height: 6vh;
@@ -80,6 +89,14 @@
 
 .medium_pic {
   height: 30vh;
+}
+
+.small_pic {
+  height: 28vh;
+}
+
+.small_card {
+  width: 25%;
 }
 
 .top_space {

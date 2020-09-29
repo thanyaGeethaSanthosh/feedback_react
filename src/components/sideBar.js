@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import ProfileIcon from './ProfileIcon';
 import UserName from './UserName';
@@ -28,7 +28,15 @@ const SideBar = (props) => {
   const history = useHistory();
   const { userID, fullName, src } = props.user;
   const [active, setActive] = useState(false);
+  const [list, setList] = useState([]);
 
+  const getGroupsOf = () => {
+    props.fetchAPI.getGroupsOf().then(({ groupList }) => {
+      setList(groupList);
+    });
+  };
+
+  useEffect(getGroupsOf, []);
   const toggleActive = () => {
     setActive((active) => !active);
   };
@@ -44,9 +52,14 @@ const SideBar = (props) => {
     });
   };
 
+  const groupList = list.map(({ name }) => (
+    <SideLink value={name} onClick={() => redirectTo(`/group/${name}`)} />
+  ));
+
   if (!active) {
     return <Icon icon={blackBar} toggleActive={toggleActive} />;
   }
+
   return (
     <div className='side_bar center'>
       <Icon icon={whiteBar} toggleActive={toggleActive} />
@@ -56,6 +69,7 @@ const SideBar = (props) => {
         userID={userID}
         fullName={fullName}
       />
+      {groupList}
       <SideLink onClick={logOut} value='Log out' />
     </div>
   );

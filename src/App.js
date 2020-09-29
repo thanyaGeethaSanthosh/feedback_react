@@ -6,6 +6,7 @@ import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
 import SelfProfile from './Pages/SelfProfile';
 import UserProfile from './Pages/UserProfile';
+import Group from './Pages/Group';
 import FetchAPI from './Handlers/FetchAPI';
 
 const App = (props) => {
@@ -21,6 +22,12 @@ const App = (props) => {
         <PrivateRoute
           component={UserProfile}
           path='/user/:userName'
+          fetchAPI={FetchAPI}
+          exact
+        />
+        <PrivateRoute
+          component={Group}
+          path='/group/:groupID'
           fetchAPI={FetchAPI}
           exact
         />
