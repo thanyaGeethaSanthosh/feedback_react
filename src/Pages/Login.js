@@ -8,7 +8,7 @@ const Login = (props) => {
         <img className='large_logo' src={backgroundImage} alt='' />
       </div>
       <div className='middle'>
-        <a href='http://localhost:3030/api/authenticate'>
+        <a href='/api/authenticate'>
           <button className='button loginBtn'>Login with Github</button>
         </a>
       </div>
