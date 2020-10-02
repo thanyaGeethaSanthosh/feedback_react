@@ -1,0 +1,23 @@
+language: node_js
+node_js: lts/*
+os:
+  - linux
+env:
+  - NODE_ENV=test
+install:
+  - rm -rf public src package.json package-lock.json
+services:
+  - redis-server
+  - postgresql
+jobs:
+  include:
+    - stage: Deploy
+      script:
+        - './script/build.sh'
+      deploy:
+        provider: heroku
+        api_key:
+          secure: BPSAh2MURUveN5uTgPwJibM+Tr8BoWfKEWEKOfqFGeIZF6PwCUYWElzNB9fE3PpdCgpolhwQ79jMAy6zSGm+cwFm/cYby3NUsJV4ZYkWJLO2ROtAiyRPpM9WuaM0O4xCemfZjJfC281IHREOTHot8wIK2ioIfaqEFxvAryPTfkIb7Fb0Xnqlj6m4Tjm02RCvShuoG2abxXtkUdTABwpaPFyunh/u9sC2Z4Xv1AcF7C+sGafmNhpxViIQzqcNHg7ZNTnMeQzKcOpwriFyx13WFrKK3uczaBffx01KPV+9mI2JM1fVEKMENZbcmh4yIecULUUNZnxC5T9VsiSGpO4dIyAPSz0O+IlkA6fPbdi9qpdS9Y0DDCZqrYlRK0rNRgwyJ5sNDKD/dpKP6/U1aWdLd06Y05m2rB+T8vGRaDorTjyrXpiSWdItUkowXX4Gzh91NgOU04hE9LdBUvKOqR8FmghLHKAnwu+Bsdf8H7xzkhKBFsOKhsjSdg1xi9fBcfcS/pC6OqbpOfj60p5n9IgjLVv1WsD3M1AvLRFJF2uFFyRtnv1nYxiT9qT6daGLgvtcZq+o8gI+gnKzLQI7UTIdyr7qpDAh/gBRJmJEs3c0EPea0MOSjp58AfX5XxGa/5yCorrrQAG1yM7ydiDCcir3DoTqzcsrxhxEmy5vW3p2d24=
+        skip_cleanup: true
+        app: give-feedback
+        run: restart
