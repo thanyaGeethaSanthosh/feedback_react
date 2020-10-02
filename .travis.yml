@@ -1,23 +1,26 @@
 language: node_js
 node_js: lts/*
 os:
-  - linux
+- linux
 env:
-  - NODE_ENV=test
+- NODE_ENV=test
 install:
-  - rm -rf public src package.json package-lock.json
+- rm -rf public src package.json package-lock.json
 services:
-  - redis-server
-  - postgresql
+- redis-server
+- postgresql
 jobs:
   include:
-    - stage: Deploy
-      script:
-        - './script/build.sh'
-      deploy:
-        provider: heroku
-        api_key:
-          secure: mHrVN6YKk3EBP3mFBPJvelJ45GhcotYg6iBk6PmHInWnln3oiVBnMUN4pBNbuaW+ubAXzHSLj/Xau4fGWf//gh2eXZDBYOb5355nPN9rup0nhLe4wP46fpxzjO8lS8N9a6kHBpDjCKh/HY5RuLK91MJA4YQJMOp8xr3G/9l5dwgohb1m8yfFkNk0t9y+Cjqcf+pTjxNYKyFyrqUENfO2mSfroMg1WgFvPNk2o46WpqXpYroaon8QDzO9usC+qgqyD9Yja3t/PsVNV7bcw4Bb40NtdiqMuWrpYz0WkQkACjhHXJcz2uLDtD6dqC1VEPdT2ND+zRZvYeA3lJCtJH5Z0nqtveNN23JJUTF1lpregbkEFE7nUNiVsrCNnsrE3dloijg1UDFKW/i5eoR9u8QHMv/45IB5kkfBwLvtXX5Of3lwyj8ItvBRYRj4OyUTOEbYxAC4knw84Z5jBlL6ZNSdWqB0AOpY0En6uyjCQTRPPQQEfUZfJ7lSJJAXNIXUcGsE5NHdam6H8v04ERKMzGl78KMCAhw6ekHcu7Gg4ielmo6BN+kJpXzN41XBKWMezzP2owFyF8ZawzelN/VstsK7hE+PtFbQSsu8AIedTTzVBTElarF20pbv3XDVkSiv/DBF1OvZJUpBWbRlKK5KB9dJJ3vzy1F5Xtc6HZzHFwuRuqE=
-        skip_cleanup: true
-        app: give-feedback
-        run: restart
+  - stage: Deploy
+    script:
+    - "./script/build.sh"
+    deploy:
+      provider: heroku
+      api_key:
+        secure: mHrVN6YKk3EBP3mFBPJvelJ45GhcotYg6iBk6PmHInWnln3oiVBnMUN4pBNbuaW+ubAXzHSLj/Xau4fGWf//gh2eXZDBYOb5355nPN9rup0nhLe4wP46fpxzjO8lS8N9a6kHBpDjCKh/HY5RuLK91MJA4YQJMOp8xr3G/9l5dwgohb1m8yfFkNk0t9y+Cjqcf+pTjxNYKyFyrqUENfO2mSfroMg1WgFvPNk2o46WpqXpYroaon8QDzO9usC+qgqyD9Yja3t/PsVNV7bcw4Bb40NtdiqMuWrpYz0WkQkACjhHXJcz2uLDtD6dqC1VEPdT2ND+zRZvYeA3lJCtJH5Z0nqtveNN23JJUTF1lpregbkEFE7nUNiVsrCNnsrE3dloijg1UDFKW/i5eoR9u8QHMv/45IB5kkfBwLvtXX5Of3lwyj8ItvBRYRj4OyUTOEbYxAC4knw84Z5jBlL6ZNSdWqB0AOpY0En6uyjCQTRPPQQEfUZfJ7lSJJAXNIXUcGsE5NHdam6H8v04ERKMzGl78KMCAhw6ekHcu7Gg4ielmo6BN+kJpXzN41XBKWMezzP2owFyF8ZawzelN/VstsK7hE+PtFbQSsu8AIedTTzVBTElarF20pbv3XDVkSiv/DBF1OvZJUpBWbRlKK5KB9dJJ3vzy1F5Xtc6HZzHFwuRuqE=
+      skip_cleanup: true
+      app: give-feedback
+      run: restart
+deploy:
+  api_key:
+    secure: auf41psiQnKF7WvQ0ADm0Gdl2jnWCHirKglKkiEflPgLCm9HHDez1RMpgvtDLsfl5fZr5Hc89wWoMnnFNKH871Y+RureZfTAf4+/8PQkVqKUJ0JmNv1dQzYEIvl8Q3AcoZqD3GCGDvSF7USnz80mrxdv1gWZ+J0XwgHeu2vFM9DyRUuWZwQtGF1Gxq93tTZKsnZ+MFRZPWDlMfbyEnFwaG4isFfx/WH9zXOlV5CqaA4Gt0m4bCCHRk8T8hs5qS//MstPleEAk1eOUFlZJaYdhJ+q0iymCgrJn+E3cPQv1hAI2lK39f0ryE1EOGfBNVGVYnojPcgmcESgI4wFFYMsN3hgBJHQipHWUHcEM4wbJyGF6Wt//zqlzUoNaD6kRQlFJGhnek0769R3tdnObWMszLFpjA5avWSq5OWJV4VGTtB4Pzutzc4Q1cK7FvINXdmevUpCJNjXR/eBEaZPsb6N7+O6uCikRXMDIoms8xfD8h4RSG6IoQ+aaysoznOYC+6QbSWtJK0dhNeckBv9jLsFk6C15KtWrKIGldUmElN/I93yXPi/+mZS3Tp5EPDjebPB2xuA86qcQNYZhsn+jvkrM450YNmRMEZtOMeWeqW6eUpX2gN4LFncLEi5/WTurrdTNGnc7IZy5Ux015Nq7vDDnKa6GvlB9tDSONAz1QqpMhY=
