@@ -1,5 +1,5 @@
 #cloning frontend
-git clone git@github.com:thanyaGeethaSanthosh/feedback_react.git frontend 1> /dev/null 2> /dev/null;
+git clone https://github.com/thanyaGeethaSanthosh/feedback_react.git frontend 1> /dev/null 2> /dev/null;
 #creating react build
 echo "Building frontend";
 cd frontend;
@@ -11,7 +11,7 @@ mv build ../build;
 cd ..;
 #cloning backend
 echo "Building backend";
-git clone git@github.com:thanyaGeethaSanthosh/feedBack_backend.git  backend 1> /dev/null 2> /dev/null;
+git clone https://github.com/thanyaGeethaSanthosh/feedBack_backend.git backend 1> /dev/null 2> /dev/null;
 cd backend;
 npm install 1> /dev/null 2> /dev/null;
 npm test;
