@@ -10,6 +10,7 @@
 
 # production
 /build
+/localBuild.sh
 
 # misc
 .DS_Store

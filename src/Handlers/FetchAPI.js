@@ -45,6 +45,14 @@ const getGroupsOf = (groupID) => {
   return fetch('/api/getGroupsOf').then((res) => res.json());
 };
 
+const joinGroup = (groupID) => {
+  return fetch(`/api/joinGroup/${groupID}`).then((res) => res.json());
+};
+
+const createGroup = (groupName) => {
+  return fetch(`/api/createGroup/${groupName}`).then((res) => res.json());
+};
+
 export default {
   loginTo,
   Register,
@@ -56,4 +64,6 @@ export default {
   logout,
   getGroupMembers,
   getGroupsOf,
+  joinGroup,
+  createGroup,
 };
