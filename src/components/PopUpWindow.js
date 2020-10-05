@@ -11,24 +11,32 @@ const PopUpWindow = (props) => {
 
   return (
     <div
-      className={`pop_up_Screen ${props.active ? 'front_view' : 'back_view'}`}
+      className={`pop_up_Screen border ${
+        props.active ? 'front_view' : 'back_view'
+      } full_width full_height`}
     >
       <div className={`pop_box`}>
-        <p>{message}</p>
         <InputText
           handleChange={handleChange}
           className='small_input_text pop_text'
           placeholder={placeholder}
           value={value}
         />
-        <div>
+        <div className='pop_up_buttons'>
           <Submit
+            className='pop_button'
             value={buttonName}
             active={active}
             onClick={() => onSubmit(value)}
           />
-          <Submit value='Cancel' active={active} onClick={closer} />
+          <Submit
+            className='pop_button'
+            value='Cancel'
+            active={active}
+            onClick={closer}
+          />
         </div>
+        <p>{message}</p>
       </div>
     </div>
   );

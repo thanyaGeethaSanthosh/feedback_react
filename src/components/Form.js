@@ -28,7 +28,7 @@ const TextArea = (props) => {
 const Submit = (props) => {
   return (
     <button
-      className='button side_Button'
+      className={`button side_Button ${props.className || ''}`}
       onClick={props.active ? props.onClick : () => {}}
     >
       {props.value ? props.value : 'send'}
