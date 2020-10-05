@@ -5,12 +5,6 @@ import FeedBacks from '../FeedBacks';
 import { Submit } from './../components/Form';
 import PopUpWindow from '../components/PopUpWindow';
 
-const joinGroup = (groupID, history, fetchAPI) => {
-  fetchAPI.joinGroup(groupID).then(({ groupName }) => {
-    history.push(`/group/${groupName}`);
-  });
-};
-
 const SelfProfile = (props) => {
   const history = useHistory();
   const [joinActive, setJoinActive] = useState(false);
@@ -32,6 +26,12 @@ const SelfProfile = (props) => {
       });
   };
 
+  const joinGroup = (groupID) => {
+    props.fetchAPI.joinGroup(groupID).then(({ groupName }) => {
+      history.push(`/group/${groupName}`);
+    });
+  };
+
   useEffect(getUser, []);
   const { profileURL, userID, fullName, src } = loggedUser;
   return (
@@ -39,7 +39,7 @@ const SelfProfile = (props) => {
       {joinActive ? (
         <PopUpWindow
           closer={() => setJoinActive(false)}
-          onSubmit={(id) => joinGroup(id, history, props.fetchAPI)}
+          onSubmit={joinGroup}
           placeholder='Type group ID to join'
           message=''
           active={joinActive}

@@ -16,9 +16,11 @@ const Group = (props) => {
     props.fetchAPI
       .getGroupMembers(groupID)
       .then(({ members, groupID, groupName }) => {
-        setMembers(members);
-        setGroupID(groupID);
-        setGroupName(groupName);
+        if (members) {
+          setMembers(members);
+          setGroupID(groupID);
+          setGroupName(groupName);
+        }
       });
   };
   useEffect(getMembers, []);
