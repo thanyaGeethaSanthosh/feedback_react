@@ -11,12 +11,6 @@ const joinGroup = (groupID, history, fetchAPI) => {
   });
 };
 
-const createGroup = (groupName, setMessage, fetchAPI) => {
-  fetchAPI.createGroup(groupName).then(({ groupName, groupID }) => {
-    setMessage(`Share this id: ${groupID} to join`);
-  });
-};
-
 const SelfProfile = (props) => {
   const history = useHistory();
   const [joinActive, setJoinActive] = useState(false);
@@ -30,6 +24,14 @@ const SelfProfile = (props) => {
     });
   };
 
+  const createGroup = (groupName) => {
+    props.fetchAPI
+      .createGroup(groupName)
+      .then(({ groupName, groupID, added }) => {
+        setMessage(`Share this id: ${groupID} to join`);
+      });
+  };
+
   useEffect(getUser, []);
   const { profileURL, userID, fullName, src } = loggedUser;
   return (
@@ -39,7 +41,7 @@ const SelfProfile = (props) => {
           closer={() => setJoinActive(false)}
           onSubmit={(id) => joinGroup(id, history, props.fetchAPI)}
           placeholder='Type group ID to join'
-          message={message}
+          message=''
           active={joinActive}
           buttonName='Join'
         />
@@ -49,9 +51,9 @@ const SelfProfile = (props) => {
       {createActive ? (
         <PopUpWindow
           closer={() => setCreateActive(false)}
-          onSubmit={(name) => createGroup(name, setMessage, props.fetchAPI)}
+          onSubmit={createGroup}
           placeholder='Type group Name to create'
-          message=''
+          message={message}
           active={createActive}
           buttonName='Create'
         />
