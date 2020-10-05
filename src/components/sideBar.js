@@ -52,10 +52,11 @@ const SideBar = (props) => {
     });
   };
 
-  const groupList = list.map(({ groupName }) => (
+  const groupList = list.map(({ groupName, groupID }, index) => (
     <SideLink
       value={groupName}
-      onClick={() => redirectTo(`/group/${groupName}`)}
+      key={index}
+      onClick={() => redirectTo(`/group/${groupID}`)}
     />
   ));
 

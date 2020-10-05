@@ -27,8 +27,8 @@ const SelfProfile = (props) => {
   };
 
   const joinGroup = (groupID) => {
-    props.fetchAPI.joinGroup(groupID).then(({ groupName }) => {
-      history.push(`/group/${groupName}`);
+    props.fetchAPI.joinGroup(groupID).then(({ groupName, groupID }) => {
+      history.push(`/group/${groupID}`);
     });
   };
 
